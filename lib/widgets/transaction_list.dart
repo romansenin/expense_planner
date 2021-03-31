@@ -49,7 +49,10 @@ class TransactionList extends StatelessWidget {
                         ),
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          "\$${transactions[index].amount.toStringAsFixed(2)}",
+                          "\$${transactions[index].amount.toStringAsFixed(2)}"
+                              .replaceAllMapped(
+                                  new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                                  (Match m) => '${m[1]},'),
                           style: TextStyle(
                             fontWeight: FontWeight.bold,
                             fontSize: 20,
