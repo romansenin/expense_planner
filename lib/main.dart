@@ -17,11 +17,15 @@ class MyApp extends StatelessWidget {
         accentColor: Colors.amber,
         fontFamily: 'Quicksand',
         textTheme: TextTheme(
-            headline6: TextStyle(
-          fontFamily: "OpenSans",
-          fontWeight: FontWeight.bold,
-          fontSize: 18,
-        )),
+          headline6: TextStyle(
+            fontFamily: "OpenSans",
+            fontWeight: FontWeight.bold,
+            fontSize: 18,
+          ),
+          button: TextStyle(
+            color: Colors.white,
+          ),
+        ),
         appBarTheme: AppBarTheme(
           textTheme: TextTheme(
             headline6: TextStyle(
@@ -69,11 +73,12 @@ class _MyHomePageState extends State<MyHomePage> {
     }).toList();
   }
 
-  void _addNewTransaction(String txTitle, double txAmount) {
+  void _addNewTransaction(
+      String txTitle, double txAmount, DateTime chosenDate) {
     final newTx = Transaction(
       title: txTitle,
       amount: txAmount,
-      date: DateTime.now(),
+      date: chosenDate,
       id: DateTime.now().toString(),
     );
 
@@ -82,9 +87,9 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
-  void _startAddNewTransaction(BuildContext ctx) {
+  void _startAddNewTransaction() {
     showModalBottomSheet(
-        context: ctx,
+        context: context,
         builder: (_) {
           return NewTransaction(_addNewTransaction);
         });
@@ -98,7 +103,7 @@ class _MyHomePageState extends State<MyHomePage> {
         actions: [
           IconButton(
             icon: Icon(Icons.add),
-            onPressed: () => _startAddNewTransaction(context),
+            onPressed: () => _startAddNewTransaction(),
           ),
         ],
       ),
@@ -117,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Icon(
           Icons.add,
         ),
-        onPressed: () => _startAddNewTransaction(context),
+        onPressed: () => _startAddNewTransaction(),
       ),
     );
   }
