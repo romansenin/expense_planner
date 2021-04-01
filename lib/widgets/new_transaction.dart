@@ -48,65 +48,71 @@ class _NewTransactionState extends State<NewTransaction> {
       setState(() {
         _selectedDate = pickedDate;
       });
+      FocusScope.of(context).requestFocus(FocusNode());
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 5,
+    return SingleChildScrollView(
       child: Container(
-        padding: EdgeInsets.all(10),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Title",
-              ),
-              controller: _titleController,
-            ),
-            TextField(
-              decoration: InputDecoration(
-                labelText: "Amount",
-              ),
-              controller: _amountController,
-              keyboardType: TextInputType.numberWithOptions(
-                decimal: true,
-              ),
-              onSubmitted: (_) => _submitData(),
-            ),
-            Container(
-              height: 70,
-              child: Row(
-                children: [
-                  Expanded(
-                    child: Text(
-                      _selectedDate == null
-                          ? "No Date Chosen!"
-                          : "Picked Date: ${DateFormat.yMd().format(_selectedDate)}",
-                    ),
+        height: 500,
+        child: Card(
+          elevation: 5,
+          child: Container(
+            padding: EdgeInsets.all(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "Title",
                   ),
-                  FlatButton(
-                    textColor: Theme.of(context).primaryColor,
-                    child: Text(
-                      "Choose Date",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
+                  controller: _titleController,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    labelText: "Amount",
+                  ),
+                  controller: _amountController,
+                  keyboardType: TextInputType.numberWithOptions(
+                    decimal: true,
+                  ),
+                  onSubmitted: (_) => _submitData(),
+                ),
+                Container(
+                  height: 70,
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          _selectedDate == null
+                              ? "No Date Chosen!"
+                              : "Picked Date: ${DateFormat.yMd().format(_selectedDate)}",
+                        ),
                       ),
-                    ),
-                    onPressed: _presentDatePicker,
-                  )
-                ],
-              ),
+                      FlatButton(
+                        textColor: Theme.of(context).primaryColor,
+                        child: Text(
+                          "Choose Date",
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        onPressed: _presentDatePicker,
+                      )
+                    ],
+                  ),
+                ),
+                RaisedButton(
+                  child: Text("Add Transaction"),
+                  color: Theme.of(context).primaryColor,
+                  textColor: Theme.of(context).textTheme.button.color,
+                  onPressed: _submitData,
+                )
+              ],
             ),
-            RaisedButton(
-              child: Text("Add Transaction"),
-              color: Theme.of(context).primaryColor,
-              textColor: Theme.of(context).textTheme.button.color,
-              onPressed: _submitData,
-            )
-          ],
+          ),
         ),
       ),
     );
