@@ -11,10 +11,13 @@ class ChartBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        FittedBox(
-            child: Text("\$${spendingAmount.toStringAsFixed(0)}"
-                .replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
-                    (Match m) => '${m[1]},'))),
+        Container(
+          height: 20,
+          child: FittedBox(
+              child: Text("\$${spendingAmount.toStringAsFixed(0)}"
+                  .replaceAllMapped(new RegExp(r'(\d{1,3})(?=(\d{3})+(?!\d))'),
+                      (Match m) => '${m[1]},'))),
+        ),
         SizedBox(
           height: 4,
         ),
