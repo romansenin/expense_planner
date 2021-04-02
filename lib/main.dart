@@ -54,46 +54,28 @@ class _MyHomePageState extends State<MyHomePage> {
       id: 't1',
       title: 'New Shoes',
       amount: 69.99,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 4)),
     ),
     Transaction(
       id: 't2',
       title: 'Weekly Groceries',
       amount: 16.53,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: 't3',
       title: 'Weekly Groceries',
       amount: 16.53,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 2)),
     ),
     Transaction(
       id: 't4',
       title: 'Weekly Groceries',
       amount: 16.53,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 1)),
     ),
     Transaction(
       id: 't5',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't5',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't6',
-      title: 'Weekly Groceries',
-      amount: 16.53,
-      date: DateTime.now(),
-    ),
-    Transaction(
-      id: 't7',
       title: 'Weekly Groceries',
       amount: 16.53,
       date: DateTime.now(),
@@ -159,14 +141,14 @@ class _MyHomePageState extends State<MyHomePage> {
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
                       MediaQuery.of(context).padding.top) *
-                  0.4,
+                  0.3,
               child: Chart(_recentTransactions),
             ),
             Container(
               height: (MediaQuery.of(context).size.height -
                       appBar.preferredSize.height -
                       MediaQuery.of(context).padding.top) *
-                  0.6,
+                  0.7,
               child: TransactionList(_userTransactions, _deleteTransaction),
             ),
           ],
